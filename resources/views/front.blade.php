@@ -70,21 +70,21 @@
           <div class="col-12 d-flex justify-content-center">
             <img class="col-12" src="{{ $post->foto }}" alt="" style="max-width: 100%;">
           </div>
-          <form method="post" action="{{ route('like') }}" class="mt-3">
-            @method('put')
-            @csrf
-            <input type="hidden" name="id_user" value="{{ Auth::guard('web')->user()->id }}">
-            <input type="hidden" name="id_post" value="{{ $post->id }}">
-            <button style="border: none; background: none;" type="submit"><i class="fas fa-heart"></i></button>
-            {{ $post->like ? $post->like->count() : 0 }}
-          </form>
+          @if(Auth::check())
+            <form method="post" action="{{ route('like') }}" class="mt-3">
+              @method('put')
+              @csrf
+              <input type="hidden" name="id_user" value="{{ Auth::guard('web')->user()->id }}">
+              <input type="hidden" name="id_post" value="{{ $post->id }}">
+              <button style="border: none; background: none;" type="submit"><i class="fas fa-heart"></i></button>
+              {{ $post->like ? $post->like->count() : 0 }}
+            </form>
+          @endif
           <p class="text-sm mt-3">
             <b>&#64;{{ $post->user->name }}</b>
             {{ $post->caption }}
           </p>
           <hr class="horizontal gray-light">
-          @if(Auth::check())
-          @endif
           <hr class="horizontal gray-light">
           <ul class="list-group mb-4">
             <?php $counter = 0; ?>
@@ -102,6 +102,7 @@
               @endif
               @endif
             </li>
+            <?php if ($counter++ == 5) break; ?>
             @endforeach
           </ul>
           <div class="row d-flex justify-content-center">
