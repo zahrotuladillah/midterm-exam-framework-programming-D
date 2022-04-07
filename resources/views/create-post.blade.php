@@ -32,7 +32,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="form-group">
-					<label class="form-control-label" for="input-username">Foto (jpg)</label>
+					<label class="form-control-label" for="input-username">Foto</label>
 					<input type="file" id="input-username" class="form-control" name="foto">
 				</div>
 			</div>
