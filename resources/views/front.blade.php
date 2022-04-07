@@ -40,9 +40,11 @@
                     {{ $post->user->name }}
                     @csrf
                     <input type="hidden" name="id_user" value="{{$post->id_user}}" />
-                    <button type="submit" style="background: none; border: none;">
-                      <span class="badge badge-sm bg-gradient-{{ $post->following ? 'danger' : 'primary'}}">{{ $post->following ? 'Unfollow' : 'Follow'}}</span>
-                    </button>
+                    @if($post->id_user != Auth::id())
+                      <button type="submit" style="background: none; border: none;">
+                        <span class="badge badge-sm bg-gradient-{{ $post->following ? 'danger' : 'primary'}}">{{ $post->following ? 'Unfollow' : 'Follow'}}</span>
+                      </button>
+                    @endif
                   </h6>
                 </form>
               </a>

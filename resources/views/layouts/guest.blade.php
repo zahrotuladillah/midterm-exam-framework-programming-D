@@ -43,17 +43,29 @@ Coded by www.creative-tim.com
           <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
             <div class="card card-plain">
               <div class="card-header pb-0 text-left">
-                <h4 class="font-weight-bolder">Sign In</h4>
-                <p class="mb-0">Enter your email and password to sign in</p>
+                @if(request()->is('login'))
+                  <h4 class="font-weight-bolder">Sign In</h4>
+                  <p class="mb-0">Enter your email and password to sign in</p>
+                @elseif(request()->is('register'))
+                  <h4 class="font-weight-bolder">Sign Up</h4>
+                  <p class="mb-0">Fill out this data to sign up</p>
+                @endif
               </div>
               <div class="card-body">
                 @yield('content')
               </div>
               <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                <p class="mb-4 text-sm mx-auto">
-                  Don't have an account?
-                  <a href=" {{ route('register') }} " class="text-primary text-gradient font-weight-bold">Sign up</a>
-                </p>
+                @if(request()->is('login'))
+                  <p class="mb-4 text-sm mx-auto">
+                    Don't have an account?
+                    <a href=" {{ route('register') }} " class="text-primary text-gradient font-weight-bold">Sign up</a>
+                  </p>
+                @elseif(request()->is('register'))
+                  <p class="mb-4 text-sm mx-auto">
+                    Have an account?
+                    <a href=" {{ route('login') }} " class="text-primary text-gradient font-weight-bold">Sign in</a>
+                  </p>
+                @endif
               </div>
             </div>
           </div>
